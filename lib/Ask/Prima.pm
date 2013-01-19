@@ -15,14 +15,17 @@ with 'Ask::API';
 
 sub entry {
   my ($self, %o) = @_;
-  input_box( $o{title}, $o{text}, '');
+  $o{title} //= 'Input';   #/# highlight fix
+  scalar input_box( $o{title}, $o{text}, '');
 }
 
 sub info {
   my ($self, %o) = @_;
   $o{title} //= 'Information';
   $o{message_type} //= mb::Information;
-  message_box( $o{title}, $o{text}, mb::Ok|$o{message_type});
+  my $res = message_box( $o{title}, $o{text}, mb::Ok|$o{message_type});
+  return 1 if $res & mb::Ok;
+  return;
 }
 
 sub warning {
