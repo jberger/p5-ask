@@ -13,10 +13,6 @@ use Prima::MsgBox;
 
 with 'Ask::API';
 
-sub quality {
-  return 90;
-}
-
 sub entry {
   my ($self, %o) = @_;
   input_box( $o{title}, $o{text}, '');
